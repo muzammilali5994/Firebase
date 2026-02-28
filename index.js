@@ -2,7 +2,7 @@
   // Import the functions you need from the SDKs you need
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-app.js";
   
-import { getFirestore, doc, setDoc,   collection, updateDoc } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
+import { getFirestore, doc, setDoc,   collection, updateDoc , getDoc } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-firestore.js";
   import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-analytics.js";
   import { getAuth,createUserWithEmailAndPassword ,onAuthStateChanged ,signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.9.0/firebase-auth.js";
   // TODO: Add SDKs for Firebase products that you want to use
@@ -125,4 +125,48 @@ async function updateData() {
     console.log(error);
   }
  
+}
+
+
+//write dat 
+const tempDataButton = document.getElementById("tempData");
+tempDataButton.addEventListener("click", writeCityData);
+async function writeCityData() {
+const citiesRef = collection(db, "cities");
+
+await setDoc(doc(citiesRef, "SF"), {
+    name: "San Francisco", state: "CA", country: "USA",
+    capital: false, population: 860000,
+    regions: ["west_coast", "norcal"] });
+await setDoc(doc(citiesRef, "LA"), {
+    name: "Los Angeles", state: "CA", country: "USA",
+    capital: false, population: 3900000,
+    regions: ["west_coast", "socal"] });
+await setDoc(doc(citiesRef, "DC"), {
+    name: "Washington, D.C.", state: null, country: "USA",
+    capital: true, population: 680000,
+    regions: ["east_coast"] });
+await setDoc(doc(citiesRef, "TOK"), {
+    name: "Tokyo", state: null, country: "Japan",
+    capital: true, population: 9000000,
+    regions: ["kanto", "honshu"] });
+await setDoc(doc(citiesRef, "BJ"), {
+    name: "Beijing", state: null, country: "China",
+    capital: true, population: 21500000,
+    regions: ["jingjinji", "hebei"] });
+}
+
+const getDataButton = document.getElementById("getData");
+getDataButton.addEventListener("click", getData);
+
+async function getData(){
+  const def = doc(db,"cities","DC");
+  const docSnap = await getDoc(def);
+  if(docSnap.exists()){
+    console.log("Document data:", docSnap.data());
+  }
+  
+  else{
+    console.log("Document does not exist");
+  }
 }
