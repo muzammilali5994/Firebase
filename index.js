@@ -11,7 +11,7 @@ import { getFirestore, doc, setDoc,   collection, updateDoc , getDoc } from "htt
   // Your web app's Firebase configuration
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   const firebaseConfig = {
-    apiKey: "AIzaSyDeZiYj_s4sim3Of2ZVlRr0kJa1GeiWgFA",
+    apiKey: "",
     authDomain: "authentication-69ad6.firebaseapp.com",
     projectId: "authentication-69ad6",
     storageBucket: "authentication-69ad6.firebasestorage.app",
@@ -19,7 +19,7 @@ import { getFirestore, doc, setDoc,   collection, updateDoc , getDoc } from "htt
     appId: "1:859586070994:web:c9c597c5867fba57b7e00b",
     measurementId: "G-34G54LLR69"
   };
-
+AIzaSyDeZiYj_s4sim3Of2ZVlRr0kJa1GeiWgFA
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
   const db = getFirestore(app);
